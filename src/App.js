@@ -2,7 +2,7 @@ import React from 'react';
 import GlobalStyle from './styles/global';
 import styled from 'styled-components'
 
-//Componente estilizado
+//styled component
 const Container = styled.div`
   color: blue;
 `;
