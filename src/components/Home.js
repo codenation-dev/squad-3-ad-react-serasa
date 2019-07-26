@@ -34,9 +34,6 @@ export default class Home extends Component {
             
         })
         
-        
-        
-        
     }
     isEmpty() {
         if ( !this.state.value ) {
@@ -47,6 +44,8 @@ export default class Home extends Component {
     
     async getDataRepos(event) {
         event.preventDefault()
+        if ( this.isEmpty() )
+            return
         await api.get(`/users/${this.state.value}/repos`).then(res => {
             
             this.setState({
@@ -61,10 +60,7 @@ export default class Home extends Component {
     }
     
     
-
     render() {
-        
-        //const keys = Object.keys(this.state.user)
         
         return (
             <div className="User">
@@ -87,49 +83,16 @@ export default class Home extends Component {
                         </div>
                     </div>
                 </form>
-                {console.log( this.state.value )}
                 
-                {  /* this.state.visible ? <Request  url={`https://api.github.com/users/${ this.state.value }/repos`} config={ {method:"get", headers:{}} } render={ response => 
-                    {
-                        
-                        
-                        return (
-                            <div className="grid-cards">
-                                {response.data.map((item, key) => <Card data={item} key={key} />)}
-                            </div>
-                        )
-                    }
-                } />: null  */}
-                
-
                 
                 { <div className="grid-cards">
-                    {this.state.repos.map((item, key) => <Card data={item} key={key} />
-                    
-                    
-                    )}
+                    {this.state.repos.map((item, key) => <Card data={item} key={key} />)}
                 </div> }
                 
             </div>
         )
     }
     
-    /*  
-    
-    
-    
-                
-    componentDidMounts() {
-        
-        let data = new Request({ service: `/users/${this.props.name}` })
-        data.then((response) => {
-        
-            const data = response.data[this.props.data]
-            console.log(response)
-            this.setState({ data });
-            
-        }).catch(err => console.log(err));
-        
-    } */
+ 
 }
 
