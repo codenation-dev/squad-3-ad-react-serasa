@@ -1,17 +1,21 @@
 import React from 'react';
 import GlobalStyle from './styles/global';
-import styled from 'styled-components'
+import Header               from './components/Header'
+import Contents             from './components/Contents'
+import Footer               from './components/Footer'
 
 //styled component
-const Container = styled.div`
+/* const Container = styled.div`
   color: blue;
-`;
+`; */
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <GlobalStyle />  
-      <Container>Squad 3</Container> 
+      <Header title="" />
+      <Contents />
+      <Footer />
     </div>
   );
 }
