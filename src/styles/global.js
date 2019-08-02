@@ -24,16 +24,11 @@ export default createGlobalStyle`
 		
     }
     html, body, #root {
+		position: relative;
         width: 100%;
         height: 100%;
-		display: flex;
-		
-		
+		overflow-x: hidden;
     }
-    
-    
-    
-
   
   code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
