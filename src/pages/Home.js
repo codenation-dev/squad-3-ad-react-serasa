@@ -1,97 +1,92 @@
 import React, { Component } from 'react'
-import Card                 from './Card'
-import api                  from '../services/api'
+import { Link } from 'react-router-dom'
+import Card from '../components/Card'
+import api from '../services/api'
 
 export default class Home extends Component {
     
     constructor( props ) {
         super(props);
-        
-        console.log(props)
         this.state = { 
             user        : ''    ,
             repos       : []    ,
-            value       : ''    ,
+            username       : ''    ,
             className   : ''    ,
-
-
         }
         //this.getDataUser    = this.getDataUser.bind(this)
         this.getDataRepos   = this.getDataRepos.bind(this)
         this.setValue       = this.setValue.bind(this)
     }
     
-    setValue( { target : { value }}  ) {
-        
-        this.setState({ value });
-        
+    setValue( { target : { value: username }}  ) {
+        this.setState({ username });
     }
     
     setError({className, info}) {
         this.setState({
             className,
             info
-            
         })
-        
     }
     isEmpty() {
-        if ( !this.state.value ) {
+        if ( !this.state.username ) {
             this.setError({"info":"Preencha corretamente os campos", "className":"input-error"})
             return false
-        } 
-    } 
-    
-    async getDataRepos(event) {
-        event.preventDefault()
-        if ( this.isEmpty() )
-            return
-        await new api.get(`/users/${this.state.value}/repos`).then(res => {
-            
-            this.setState({
-                    
-                    repos : res.data
-                    
-                })
-            
-        })
+        }
+    }
 
-        
+    submitForm = (event) => {
+        event.preventDefault();
+        this.getDataRepos();
     }
     
+    async getDataRepos() {
+        if ( this.isEmpty() )
+            return
+        await new api.get(`/users/${this.state.username}/repos`).then(res => {
+            this.setState({
+                    repos : res.data
+                })
+        })
+    }
     
     render() {
-        
+        const { username } = this.state;
         return (
-            <div className="User">
-                
-                
-                <form>
+            <div className="User">  
+                <form onSubmit={this.submitForm}>
                     <div data-info={this.state.info} className={this.state.className + " field"}>
-                        
-                        <input  autoComplete="false" placeholderhide="" placeholder=" " value={this.state.value} onChange={this.setValue} type="text" id="username" />
+                        <input autoComplete="false" 
+                            placeholderhide=""
+                            placeholder=""
+                            value={username}
+                            onChange={this.setValue}
+                            type="text"
+                            id="username" />
                         <label htmlFor="username">Usuário</label>
                     </div>
                     
                     <div className="user-data">
-                        
                         <div className="field">
                             <button onClick={this.getDataUser}> Carregar </button>
-                            <button onClick={this.getDataRepos}> Ver repositorios </button> 
+                            <button type="button"> Ver repositorios </button> 
                             <button > Criar repositorios </button> 
                         </div>
                     </div>
                 </form>
                 
                 
-                { <div className="grid-cards">
-                    {this.state.repos.map((item, key) => <Card data={item} key={key} />)}
-                </div> }
-                
+                <div className="grid-cards">
+                    {this.state.repos.map((item, key) => (
+                        <Link to={{
+                            pathname: `/${username}/${item.name}`,
+                        }}>
+                            <Card data={item} key={key} />
+                        </Link>
+                    ))}
+                </div>
             </div>
         )
     }
-    
- 
 }
 
