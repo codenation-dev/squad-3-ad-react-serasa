@@ -1,98 +1,61 @@
 import React, { Component } from 'react'
 import Card                 from './Card'
 import api                  from '../services/api'
+import Error                from '../components/Error'
+import Navbar               from '../components/Navbar'
+import { matchPath }        from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 
 export default class Home extends Component {
     
     constructor( props ) {
         super(props);
         
-        console.log(props)
         this.state = { 
-            user        : ''    ,
-            repos       : []    ,
-            value       : ''    ,
-            className   : ''    ,
-
-
+            error       : false ,
         }
-        //this.getDataUser    = this.getDataUser.bind(this)
-        this.getDataRepos   = this.getDataRepos.bind(this)
-        this.setValue       = this.setValue.bind(this)
+        this.handleChangeSearchString   = this.handleChangeSearchString.bind(this)
+        this.closeBoxErrorEvent         = this.closeBoxErrorEvent.bind(this)
     }
     
-    setValue( { target : { value }}  ) {
-        
-        this.setState({ value });
-        
+    handleChangeSearchString({target :{ value }}) {
+        this.props.history.push(`/${value}`)
     }
     
-    setError({className, info}) {
+    getSearchString = () => {
+        
+        const details = this.props.location.pathname.indexOf('/user/') > -1 ? "/user" : ""
+        
+        const match = matchPath(this.props.location.pathname, {
+            path : details + "/:searchString",
+            exact: true
+        });
+        return match && match.params ? match.params.searchString : ""
+    };
+    
+    
+    
+    
+    closeBoxErrorEvent(){
         this.setState({
-            className,
-            info
-            
+            error: false
         })
-        
     }
-    isEmpty() {
-        if ( !this.state.value ) {
-            this.setError({"info":"Preencha corretamente os campos", "className":"input-error"})
-            return false
-        } 
-    } 
-    
-    async getDataRepos(event) {
-        event.preventDefault()
-        if ( this.isEmpty() )
-            return
-        await api.get(`/users/${this.state.value}/repos`).then(res => {
-            
-            this.setState({
-                    
-                    repos : res.data
-                    
-                })
-            
-        })
-
-        
-    }
-    
     
     render() {
         
+        //console.log(this.getSearchString())
         return (
-            <div className="User">
-                
-                
-                <form>
-                    <div data-info={this.state.info} className={this.state.className + " field"}>
-                        
-                        <input  autoComplete="false" placeholderhide="" placeholder=" " value={this.state.value} onChange={this.setValue} type="text" id="userName" />
-                        <label htmlFor="userName">Usuário</label>
-                        <button onClick={this.getDataUser}> Carregar </button>
-                        
-                    </div>
-                    
-                    <div className="user-data">
-                        <p>Bem vindo  o que gostaria de fazer</p>
-                            <div className="field">
-                            <button onClick={this.getDataRepos}> Ver repositorios </button> 
-                            <button > Criar repositorios </button> 
-                        </div>
-                    </div>
-                </form>
-                
-                
-                { <div className="grid-cards">
-                    {this.state.repos.map((item, key) => <Card data={item} key={key} />)}
-                </div> }
+            <div className="Home">
+                <Navbar searchString={this.getSearchString()}  handleChange={this.handleChangeSearchString} />
+                <div className="field">
+                    <Link className="button" to={`user/${this.getSearchString()}`}>Generate Card</Link>
+                </div>
                 
             </div>
         )
     }
     
- 
 }
 

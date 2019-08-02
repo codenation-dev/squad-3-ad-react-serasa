@@ -12,10 +12,12 @@ import Footer               from './components/Footer'
 function App() {
   return (
     <div className="app">
-      <GlobalStyle />  
-      <Header title="" />
-      <Contents />
-      <Footer />
+
+        <GlobalStyle />  
+        <Header title="" />
+        <Contents />
+        <Footer />
+
     </div>
   );
 }
