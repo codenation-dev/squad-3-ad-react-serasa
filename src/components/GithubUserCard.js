@@ -1526,8 +1526,8 @@ class GithubUserCard extends Component {
             "default_branch": "master"
         }
     ]
-    user =  {
-            
+    user =  
+    {
         "login": "FeehGb",
         "id": 43045359,
         "node_id": "MDQ6VXNlcjQzMDQ1MzU5",
@@ -1559,7 +1559,9 @@ class GithubUserCard extends Component {
         "following": 6,
         "created_at": "2018-09-06T18:02:28Z",
         "updated_at": "2019-07-01T16:24:40Z"
-} 
+    }
+        
+        
     constructor(props){
         super(props)
         this.state = {
@@ -1567,77 +1569,29 @@ class GithubUserCard extends Component {
             ,   repos   : null
             ,   error   : false
             ,   loading : true
+            ,   opened  : true
         }
-        
-        this.closeBoxErrorEvent     = this.closeBoxErrorEvent.bind(this)
     }
     
+    
+
     closeBoxErrorEvent(){
         
         this.setState({
-                error   : false
-            ,   loading : false
+            opened : false
         })
         
     }
     
     
-    async componentDidMount() {
-        
-        // if (!this.props.match.params.searchString){
-            
-        //     this.setState({
-        //         error : {code:"001",type:"Errors"}
-        //         ,   loading : false
-        //     })
-        // }
-        
-        
-        // try {
-            
-            
-        //     const user  = await api.get(`/users/${this.props.match.params.searchString}`);
-        //     const repos = await api.get(user.data.repos_url)
-            
-            
-        //     this.setState({
-                
-        //             user  : user.data
-        //         ,   repos : repos.data
-        //         ,   loading : false
-                
-        //     })
-            
-            
-        // } catch (error) {
-            
-        //     this.setState({
-        //             error : {
-        //                 code: error.response.status ,
-        //                 type : "HttpErrors"
-        //             }
-        //         ,   loading : false
-        //     }) 
-        // } 
-        
-    /* this.setState({
-                
-            user  : this.user
-        ,   repos : this.repos
-        
-    }) */
-        
-        
-        
-    }
-    
-    
-    
     render(){
+        
+        
         console.log("CARD PROPS", this.props)
-        const user = this.props.profile
-        const { repos , error } = this.props
-        if (user)
+
+        const { repos , user } = this.props
+        
+        if (user && repos)
             return (
                 <Card>
                     <CardHeader>
@@ -1697,15 +1651,24 @@ class GithubUserCard extends Component {
                     
                 </Card>
             )
-        else
-            return this.state.error ? <Error code={error.code} type={error.type} closeEvent={this.closeBoxErrorEvent} /> : null
+            else
+                return null
             
     }
     
     
 }
 
+const CardFooter = styled.div``
 
+const mapStateToProps = ({user : {user, repos, error }}) => ({
+    
+        user
+    ,   repos
+    ,   error
+    
+})
+export default connect(mapStateToProps, null)(GithubUserCard)
 
 const Card = styled.div`
     
@@ -1849,11 +1812,5 @@ const RepoData = styled.div`
 
 `
 
-const CardFooter = styled.div``
 
-const mapStateToProps = ({user : {profile, repos }}) => ({
-    profile,
-    repos
-})
 
-export default connect(mapStateToProps, null)(GithubUserCard)

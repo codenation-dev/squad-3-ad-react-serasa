@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import userThunks from '../thunks/userThunks'
+
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -22,12 +22,13 @@ class Navbar extends React.Component {
     }
 
     handleClick(){
-        const { getUser } = this.props;
-
-        getUser(this.state.value);
+        const { getUser, getRepos } = this.props
+        getUser(this.state.value)
+        getRepos(this.state.value)
     }
     
     render(){
+        
         return (
             <div>
                 <div  className="field">
@@ -53,7 +54,8 @@ class Navbar extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getUser: username => dispatch(userThunks.getUser(username))  
+    getUser: username => dispatch(userThunks.getUser(username)),  
+    getRepos: username => dispatch(userThunks.getRepos(username)),  
 });
 
 export default connect(null, mapDispatchToProps)(Navbar)

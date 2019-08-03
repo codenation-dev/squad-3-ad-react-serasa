@@ -1,19 +1,28 @@
 const INITIAL_STATE = {
-    repos: null,
-    profile: null,
+        repos   : null
+    ,   user    : null
+    ,   error   : null
 }
 
 const user = (state = INITIAL_STATE, action) => {
+    
+    
+    console.log(action.type,action.data)
     switch (action.type) {
         case "GET_USER":
             return {
                 ...state,
-                profile: {...action.data.profile}
+                user: {...action.data}
             };
         case "GET_REPOS":
             return {
                 ...state,
-                repos: {...action.data}
+                repos: [...action.data]
+            };
+        case "ERROR":
+            return {
+                ...state,
+                error: {...action.data}
             };
 
         default:

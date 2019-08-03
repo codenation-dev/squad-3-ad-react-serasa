@@ -7,14 +7,10 @@ import styled from 'styled-components'
 export default class Error extends Component {
     
     
-    
     render(){
         const {type, code, closeEvent } = this.props
         
-        
-        
-        
-        if (type && code) {
+        if (type && code )  {
             
             return(
                 <div>

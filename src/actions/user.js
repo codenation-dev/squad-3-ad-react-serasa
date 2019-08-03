@@ -11,3 +11,10 @@ export function getRepos(repos){
         data: repos
     }
 }
+
+export function error(error){
+    return {
+        type: "ERROR",
+        data: error
+    }
+}
