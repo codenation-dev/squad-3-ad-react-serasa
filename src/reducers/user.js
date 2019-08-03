@@ -5,9 +5,6 @@ const INITIAL_STATE = {
 }
 
 const user = (state = INITIAL_STATE, action) => {
-    
-    
-    console.log(action.type,action.data)
     switch (action.type) {
         case "GET_USER":
             return {

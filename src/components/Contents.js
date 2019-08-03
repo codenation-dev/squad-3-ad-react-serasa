@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Home from './Home';
-import {Route} from 'react-router-dom'
+import {Route} from 'react-router-dom';
+import Repositories from './Repositories'
 
-export default class Contents extends Component {
-    
+class Contents extends Component {
     render() {
         return (
             <div className="content">
                 <div className="wrap-content">
-                    <Route path="/"  component={Home}/>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/repos" component={Repositories}/>
                 </div>
             </div>
         )
     }
-
-
-
 }
+
+export default Contents;

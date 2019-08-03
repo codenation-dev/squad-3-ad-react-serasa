@@ -1,20 +1,12 @@
-import React, { Component } from 'react'
-import Navbar               from '../components/Navbar'
+import React    from 'react'
+import Navbar   from '../components/Navbar'
 import GithubUserCard from '../components/GithubUserCard'
 
-
-export default class Home extends Component {
+const Home = () => (
+    <div className="Home">
+        <Navbar />
+        <GithubUserCard />
+    </div>
+)
     
-    
-    
-    render() {
-        return (
-            <div className="Home">
-                <Navbar />
-                <GithubUserCard />
-            </div>
-        )
-    }
-    
-}
-
+export default Home;

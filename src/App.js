@@ -9,7 +9,6 @@ function Home() {
     <div className="app">
       <GlobalStyle />  
       <Header title="" />
-      {/* <BaseRedux /> */}
       <Contents />
       <Footer />
     </div>
