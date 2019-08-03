@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api                  from '../services/api'
 import Error                from '../components/Error'
 import styled               from 'styled-components'
+import { connect } from 'react-redux'
 
 
 
@@ -1583,41 +1584,41 @@ class GithubUserCard extends Component {
     
     async componentDidMount() {
         
-        if (!this.props.match.params.searchString){
+        // if (!this.props.match.params.searchString){
             
-            this.setState({
-                error : {code:"001",type:"Errors"}
-                ,   loading : false
-            })
-        }
+        //     this.setState({
+        //         error : {code:"001",type:"Errors"}
+        //         ,   loading : false
+        //     })
+        // }
         
         
-        try {
+        // try {
             
             
-            const user  = await api.get(`/users/${this.props.match.params.searchString}`);
-            const repos = await api.get(user.data.repos_url)
+        //     const user  = await api.get(`/users/${this.props.match.params.searchString}`);
+        //     const repos = await api.get(user.data.repos_url)
             
             
-            this.setState({
+        //     this.setState({
                 
-                    user  : user.data
-                ,   repos : repos.data
-                ,   loading : false
+        //             user  : user.data
+        //         ,   repos : repos.data
+        //         ,   loading : false
                 
-            })
+        //     })
             
             
-        } catch (error) {
+        // } catch (error) {
             
-            this.setState({
-                    error : {
-                        code: error.response.status ,
-                        type : "HttpErrors"
-                    }
-                ,   loading : false
-            }) 
-        } 
+        //     this.setState({
+        //             error : {
+        //                 code: error.response.status ,
+        //                 type : "HttpErrors"
+        //             }
+        //         ,   loading : false
+        //     }) 
+        // } 
         
     /* this.setState({
                 
@@ -1633,8 +1634,10 @@ class GithubUserCard extends Component {
     
     
     render(){
-        const { user, repos , error } = this.state
-        if (!error && user )
+        console.log("CARD PROPS", this.props)
+        const user = this.props.profile
+        const { repos , error } = this.props
+        if (user)
             return (
                 <Card>
                     <CardHeader>
@@ -1665,10 +1668,8 @@ class GithubUserCard extends Component {
                             </UserStats>
                             
                         </UserData>
-                        <Repos>
-                            
-                            {
-                                
+                        <Repos>                            
+                            {                                
                                 repos ? repos.map( (repo, key) => 
                                     
                                     <Repo key={key}>
@@ -1850,4 +1851,9 @@ const RepoData = styled.div`
 
 const CardFooter = styled.div``
 
-export default GithubUserCard
+const mapStateToProps = ({user : {profile, repos }}) => ({
+    profile,
+    repos
+})
+
+export default connect(mapStateToProps, null)(GithubUserCard)
