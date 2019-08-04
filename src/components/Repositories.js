@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Input, Button} from '../styles/Input';
+import {Input, Button, Inputs, Label, Field} from '../styles/Input';
 import {
         Circle
     ,   Repos
@@ -43,10 +43,22 @@ class Repositories extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <Input name="repository" value={repository} onChange={this.handleChange}/> Repositório
-                    <Input name="language" value={language} onChange={this.handleChange}/> Linguagem
-                    <br/>
-                    <Button type="submit">buscar</Button>
+                    
+                    <Inputs>
+                        <Field className="field">
+                            <Input name="repository"  placeholderhide = "" placeholder     = " " value={repository} onChange={this.handleChange}/> 
+                            <Label>Repositório</Label>
+                        </Field>
+                        <Field className="field">
+                            <Input name="language"  placeholderhide = "" placeholder     = " " value={language} onChange={this.handleChange}/> 
+                            <Label>Linguagem</Label>
+                        </Field>
+                        <Field className="field no-flex">
+                            <Button className="button" type="submit">buscar</Button>
+                        </Field>
+                    </Inputs>
+                    
+                    
                 </form>
                     <Repos>                            
                         {                                
@@ -60,7 +72,7 @@ class Repositories extends Component {
                                         :
                                         <RepoData >&nbsp;</RepoData>
                                     }
-                                    { repo.description  ? <RepoData  >                               { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
+                                    { repo.description  ? <RepoData  >  { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
                                     { repo.language     ? <RepoData  className="language"> <Circle />                    { repo.language   } </RepoData >            :<RepoData >&nbsp;</RepoData>}
                                                         
                                 </Repo>

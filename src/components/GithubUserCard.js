@@ -21,34 +21,43 @@ import {CardHeader
     ,   Repos
     ,   Repo
     ,   RepoLink
-    ,   RepoData} from '../styles/Card'
+    ,   RepoData
+    ,   CardContentTitle
+    ,   Title} from '../styles/Card'
+import { bindActionCreators } from 'redux';
+import  * as repositoriesAction from '../actions/repository';
 
 
 class GithubUserCard extends Component {
-        
+    
+    error = false;
+    
     constructor(props){
         super(props)
         this.state = {
-                user    : null
-            ,   repos   : null
-            ,   error   : false
-            ,   loading : true
-            ,   opened  : true
+                user     : null
+            ,   repos    : null
+            ,   open     : false
+            ,   loading  : true
+            ,   isShowing : false
         }
+        this.closeHandler = this.closeHandler.bind(this);
     }
     
-    closeBoxErrorEvent(){
-        this.setState({
-            opened : false
-        })
+    closeHandler = () => {
+        
+        this.props.clearError();
+        
     }
 
     render(){
-        const { repos , user } = this.props
+        let { repos , user, error } = this.props
         
         if (user && repos)
             return (
+                
                 <Card>
+                    
                     <CardHeader>
                         <Photo>
                             <Link target="_blank" href={user.html_url}><img height="50px" src={user.avatar_url} alt=""/></Link>
@@ -59,6 +68,7 @@ class GithubUserCard extends Component {
                         </UserInfo>
                     </CardHeader>
                     <CardContent>
+                        
                         <UserData>
                             <OthersInfo>
                                 <Info>Location  : {user.location}</Info>
@@ -71,8 +81,17 @@ class GithubUserCard extends Component {
                                 <Stats><b>{user.followers}</b><p>Followers</p></Stats>
                                 <Stats><b>{user.following}</b><p>Following</p></Stats>
                             </UserStats>
+                        </UserData>
+                        <UserData>
+                            
+                            <ReposByYear data={repos} />
                             
                         </UserData>
+                        <CardContentTitle>
+                            
+                            <Title className="center">Repositórios</Title>
+                            
+                        </CardContentTitle>
                         <Repos>                            
                             {                                
                                 repos ? repos.map( (repo, key) => 
@@ -96,13 +115,24 @@ class GithubUserCard extends Component {
                         </Repos>
                     </CardContent>
                     <CardFooter>
-                        <ReposByYear data={repos} />
+                        
                     </CardFooter>
                     
                 </Card>
             )
-            else
-                return null
+            else {
+                    
+                    
+                    let code = error ? error.status : false
+                    return <Error 
+                        
+                        close={this.closeHandler} 
+                        code={code} 
+                        type="HttpErrors" 
+                    />
+                
+            }
+                
             
     }
 }
@@ -116,5 +146,11 @@ const mapStateToProps = ({user : {user, repos, error }}) => ({
     ,   error
     
 })
-export default connect(mapStateToProps, null)(GithubUserCard)
+
+const mapDispatchToProps = dispatch => ({
+    clearError: bindActionCreators(repositoriesAction.clearError, dispatch)
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GithubUserCard)
 

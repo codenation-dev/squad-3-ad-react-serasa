@@ -10,6 +10,10 @@ const repository = (state = INITIAL_STATE, action) => {
                 ...state,
                 repos: [...action.data]
             };
+        case "CLEAR_ERROR":
+            return {
+                error:action.data
+            };
         
         default:
             return state;

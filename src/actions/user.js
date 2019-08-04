@@ -18,3 +18,10 @@ export function error(error){
         data: error
     }
 }
+
+export function clearError(){
+    return {
+        type: "CLEAR_ERROR",
+        data: false
+    }
+}

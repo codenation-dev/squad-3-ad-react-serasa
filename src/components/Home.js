@@ -1,12 +1,21 @@
 import React    from 'react'
 import Navbar   from '../components/Navbar'
 import GithubUserCard from '../components/GithubUserCard'
+import styled               from 'styled-components'
+
+
 
 const Home = () => (
-    <div className="Home">
+    <SHome className="Home">
         <Navbar />
         <GithubUserCard />
-    </div>
+    </SHome>
 )
-    
+
+const SHome = styled.div`
+
+    flex-direction: column;
+    display: flex;
+`
+
 export default Home;

@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 
+
+
+const Title = styled.div`
+    font-weight:bold;
+    font-size:14px;
+    flex: 1;
+    color: white;
+    
+    &.center{
+        text-align: center;
+    }
+`
+
+
+
+const CardContentTitle = styled.div`
+    display         : flex;
+    height          : 50px;
+    padding         : 5px;
+    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    border          : solid 2px #fefefe;
+    align-items     : center;
+    
+`
+
+
 const CardHeader = styled.div`
     display         : flex;
     height          : 100px;
@@ -15,7 +42,7 @@ const Card = styled.div`
     align-self          : center            ;
     flex-direction      : column            ;
     box-shadow          : 5px 4px 5px -3px rgba(29, 29, 29, 0.1),0 0 0  1px rgba(0, 0, 0, 0.01);
-    margin              : 10px              ;
+    margin              : 10px              ; 
 `;
 
 const Link = styled.a`    
@@ -64,7 +91,7 @@ const Info = styled.div``;
 
 const UserStats = styled.div`
     display: flex;
-    
+    flex-wrap: wrap;
 `;
 
 const Stats = styled.div`
@@ -151,4 +178,6 @@ export {
 ,   Repo
 ,   RepoLink
 ,   RepoData
+,   CardContentTitle
+,   Title
 };

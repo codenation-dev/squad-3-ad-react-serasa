@@ -4,3 +4,9 @@ export function getRepositoriesByLanguage(repos){
         data: repos
     }
 }
+export function clearError(){
+    return {
+        type: "CLEAR_ERROR",
+        data: false
+    }
+}

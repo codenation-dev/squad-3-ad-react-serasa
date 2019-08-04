@@ -128,8 +128,10 @@ input[code] + label {
 	margin-bottom     : 15px                  ; 
 }
 .app > header .wrap-header {
-	width         : 75%   ;
-	margin-left  : 10px   ;
+	width        	: 75%   ;
+	margin-left  	: 10px  ;
+	display		 	: flex  ;
+	flex-direction	: column;
 	
 }
 
