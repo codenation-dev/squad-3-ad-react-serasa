@@ -1,3 +1,10 @@
+export function getAuth(auth){
+    return {
+        type: "GET_AUTH",
+        data: auth
+    }
+}
+
 export function getUser(users){
     return {
         type: "GET_USER",

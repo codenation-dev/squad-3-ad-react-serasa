@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import api                  from '../services/api'
 import Error                from '../components/Error'
 import styled               from 'styled-components'
 import { connect } from 'react-redux'
@@ -26,12 +25,10 @@ import {CardHeader
     ,   Title} from '../styles/Card'
 import { bindActionCreators } from 'redux';
 import  * as repositoriesAction from '../actions/repository';
+import {Link as LinkRouter} from 'react-router-dom'
 
 
 class GithubUserCard extends Component {
-    
-    error = false;
-    
     constructor(props){
         super(props)
         this.state = {
@@ -41,13 +38,12 @@ class GithubUserCard extends Component {
             ,   loading  : true
             ,   isShowing : false
         }
+        
         this.closeHandler = this.closeHandler.bind(this);
     }
     
     closeHandler = () => {
-        
         this.props.clearError();
-        
     }
 
     render(){
@@ -63,9 +59,19 @@ class GithubUserCard extends Component {
                             <Link target="_blank" href={user.html_url}><img height="50px" src={user.avatar_url} alt=""/></Link>
                         </Photo>
                         <UserInfo>
-                            <Name><Link  target="_blank" href={user.html_url}>{user.name}</Link></Name>
+                            <Name>
+                                <Link  target="_blank" href={user.html_url}>{user.name}</Link>
+                            </Name>
                             <Nick>{user.login}</Nick>
                         </UserInfo>
+                        <LinkRouter to={{
+                            pathname: "/user/repos",
+                            state: {
+                                username: user.login
+                            }}
+                        }>
+                            +teste
+                        </LinkRouter>
                     </CardHeader>
                     <CardContent>
                         
@@ -140,11 +146,9 @@ class GithubUserCard extends Component {
 const CardFooter = styled.div``
 
 const mapStateToProps = ({user : {user, repos, error }}) => ({
-    
         user
     ,   repos
     ,   error
-    
 })
 
 const mapDispatchToProps = dispatch => ({

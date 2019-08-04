@@ -4,6 +4,12 @@ export function getRepositoriesByLanguage(repos){
         data: repos
     }
 }
+export function create(repo){
+    return {
+        type: "CREATE",
+        data: repo
+    }
+}
 export function clearError(){
     return {
         type: "CLEAR_ERROR",

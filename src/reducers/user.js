@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
         repos   : null
     ,   user    : null
+    ,   auth    : null
     ,   error   : null
 }
 
@@ -20,6 +21,15 @@ const user = (state = INITIAL_STATE, action) => {
                 ...state,
                 error:false,
                 repos: [...action.data]
+            };
+        case "GET_AUTH":
+            console.log("ITEMS AUTH", action.data)
+            console.log("STATE", state)
+            
+            return {
+                ...state,
+                error:false,
+                auth: {...action.data}
             };
         case "ERROR":
             return {
