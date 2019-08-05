@@ -34,6 +34,7 @@ const CardHeader = styled.div`
     background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border          : solid 2px #fefefe;
     align-items     : center;
+    position        : relative;
 `
 const Card = styled.div`
     display             : flex              ;
@@ -50,6 +51,26 @@ const Link = styled.a`
     &:hover{
         color: white;
     }
+    
+`;
+
+const Icon = styled.div`    
+    right: 20px;
+    font-weight: bold;
+    font-size: 62px;
+    position: absolute;
+    top: 0;
+    
+    & > a{
+        color: white;
+        
+        &:hover{
+            
+            color: #d6d9f1
+            
+        }
+    }
+    
 `;
 
 const Photo = styled.div`
@@ -180,4 +201,5 @@ export {
 ,   RepoData
 ,   CardContentTitle
 ,   Title
+,   Icon
 };

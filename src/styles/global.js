@@ -39,6 +39,7 @@ code {
 
 a {
 	text-decoration:none;
+	cursor: pointer;
 }
 
 button {
@@ -230,9 +231,7 @@ input[code] + label {
 }
 
 .field  textarea{
-	width     : 90%;
-	max-width : 90%;
-	min-width : 70%;
+
 	height    : 50px;
 	min-height: 50px;
 }

@@ -11,7 +11,10 @@ const Header = props => (
                     <Link to="/">Home</Link>
                 </SLink>
                 <SLink>
-                    <Link to="/repos">Repositórios</Link>
+                    <Link to="/user/repos">Criar Repositórios</Link>
+                </SLink>
+                <SLink>
+                    <Link to="/repos">Procurar Repositórios do Git</Link>
                 </SLink>
                 
             </Nav>

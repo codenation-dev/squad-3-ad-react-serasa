@@ -40,17 +40,19 @@ class Repositories extends Component {
         const {repository, language} = this.state;
         const { repos } = this.props;
         
-        return (
+        return ( 
             <div>
+                <h2>Busque os repositorios do GitHub e filtre por Linguagem</h2>
+                <p>Use os campos para buscar os repositorios que quiser, e filtre pela linguagem se desejar...</p>
                 <form onSubmit={this.handleSubmit}>
                     
                     <Inputs>
                         <Field className="field">
-                            <Input name="repository"  placeholderhide = "" placeholder     = " " value={repository} onChange={this.handleChange}/> 
-                            <Label>Repositório</Label>
+                            <Input name="repository"  required="required"  placeholderhide = "" placeholder     = " " value={repository} onChange={this.handleChange}/> 
+                            <Label>Busca</Label>
                         </Field>
                         <Field className="field">
-                            <Input name="language"  placeholderhide = "" placeholder     = " " value={language} onChange={this.handleChange}/> 
+                            <Input name="language"    placeholderhide = "" placeholder = " " value={language} onChange={this.handleChange}/> 
                             <Label>Linguagem</Label>
                         </Field>
                         <Field className="field no-flex">

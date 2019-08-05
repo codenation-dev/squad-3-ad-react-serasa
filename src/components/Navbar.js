@@ -31,6 +31,9 @@ class Navbar extends React.Component {
         
         return (
             <div>
+                
+                <h2>Digite seu nome e gere um card</h2>
+                
                 <div  className="field">
                     <input 
                         value           = {this.state.value}
@@ -40,6 +43,7 @@ class Navbar extends React.Component {
                         type            = "search"
                         id              = "username"
                         className       = "searching"
+                        required        = "required"
                     />
                     <label htmlFor="username">Usuário</label>
                 </div>

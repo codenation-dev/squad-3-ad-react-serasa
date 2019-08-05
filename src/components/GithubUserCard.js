@@ -22,7 +22,8 @@ import {CardHeader
     ,   RepoLink
     ,   RepoData
     ,   CardContentTitle
-    ,   Title} from '../styles/Card'
+    ,   Title
+    ,   Icon} from '../styles/Card'
 import { bindActionCreators } from 'redux';
 import  * as repositoriesAction from '../actions/repository';
 import {Link as LinkRouter} from 'react-router-dom'
@@ -37,15 +38,23 @@ class GithubUserCard extends Component {
             ,   open     : false
             ,   loading  : true
             ,   isShowing : false
+            ,   select : null
         }
         
         this.closeHandler = this.closeHandler.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     
     closeHandler = () => {
         this.props.clearError();
     }
-
+    
+    handleChange({target:{name, value}}){
+        this.setState({
+            [name]: value
+        });
+    }
+    
     render(){
         let { repos , user, error } = this.props
         
@@ -64,14 +73,14 @@ class GithubUserCard extends Component {
                             </Name>
                             <Nick>{user.login}</Nick>
                         </UserInfo>
-                        <LinkRouter to={{
-                            pathname: "/user/repos",
-                            state: {
-                                username: user.login
-                            }}
-                        }>
-                            +teste
-                        </LinkRouter>
+                        <Icon className="createIcon" title="Criar repositorio"> 
+                            <LinkRouter to={{
+                                pathname: "/user/repos",
+                                state: {
+                                    username: user.login
+                                }}
+                            }> + </LinkRouter>
+                        </Icon>
                     </CardHeader>
                     <CardContent>
                         
@@ -95,39 +104,26 @@ class GithubUserCard extends Component {
                         </UserData>
                         <CardContentTitle>
                             
-                            <Title className="center">Repositórios</Title>
-                            
+                            <Title >Repositórios</Title>
+                            <Select name="select" value={this.state.select} onChange={this.handleChange}>
+                                <option value="">All</option>
+                                {
+                                    [...new Set(repos.map(repo =>  repo.language ).filter(repo => repo != null))].map((language, key) =>  <option key={key} value={language}>{language}</option>)
+                                }
+                            </Select>
                         </CardContentTitle>
                         <Repos>                            
                             {                                
-                                repos ? repos.map( (repo, key) => 
-                                    
-                                    <Repo key={key}>
-                                        { repo.name         ? 
-                                            <RepoData>
-                                                <RepoLink target="_blank" href={repo.html_url}>{ repo.name       } </RepoLink>
-                                            </RepoData> 
-                                            :
-                                            <RepoData >&nbsp;</RepoData>
-                                        }
-                                        { repo.description  ? <RepoData  >                               { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
-                                        { repo.language     ? <RepoData  className="language"> <Circle />                    { repo.language   } </RepoData >            :<RepoData >&nbsp;</RepoData>}
-                                                            
-                                    </Repo>
-                                    
-                                ) : null
+                                repos ? <AllRepos filter={this.state.select ? this.state.select : null} repos={repos} /> : null
                             }
                             
                         </Repos>
                     </CardContent>
-                    <CardFooter>
-                        
-                    </CardFooter>
+                    
                     
                 </Card>
             )
             else {
-                    
                     
                     let code = error ? error.status : false
                     return <Error 
@@ -143,7 +139,49 @@ class GithubUserCard extends Component {
     }
 }
 
-const CardFooter = styled.div``
+
+class AllRepos extends Component {
+    
+    
+    
+    render() {
+        
+        let  { repos, filter } = this.props
+        console.log(repos)
+        if (filter) {
+            
+            repos = repos.filter(repo => repo.language === filter)
+            
+        }
+        
+        return (
+            repos.map( (repo, key) => 
+                                    
+                <Repo key={key}>
+                    { repo.name         ? 
+                        <RepoData>
+                            <RepoLink target="_blank" href={repo.html_url}>{ repo.name       } </RepoLink>
+                        </RepoData> 
+                        :
+                        <RepoData >&nbsp;</RepoData>
+                    }
+                    { repo.description  ? <RepoData  >                               { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
+                    { repo.language     ? <RepoData  className="language"> <Circle />                    { repo.language   } </RepoData >            :<RepoData >&nbsp;</RepoData>}
+                                        
+                </Repo>
+                
+            ) 
+        )
+    }
+}
+
+
+const Select = styled.select`
+    border: solid 1px rgba(0, 0, 0, 0.78);
+    font-size: 18px;
+    padding: 5px;
+
+`
 
 const mapStateToProps = ({user : {user, repos, error }}) => ({
         user

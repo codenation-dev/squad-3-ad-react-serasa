@@ -30,7 +30,7 @@ const HttpErrors = {
     "401": {"description":"Unauthorized"},
     "402": {"description":"Payment Required"},
     "403": {"description":"Forbidden"},
-    "404": {"description":"Not Found"},
+    "404": {"description":"Não encontrado"},
     "405": {"description":"Method Not Allowed"},
     "406": {"description":"Not Acceptable"},
     "407": {"description":"Proxy Authentication Required"},
