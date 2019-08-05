@@ -229,6 +229,30 @@ input[code] + label {
 	margin          : 0 15px 5px 0                ;
   
 }
+.success{
+	
+	padding: 16px;
+    margin: 5px;
+    background-color: darkgrey;
+    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    color: white;
+    
+    font-size: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 6px -3px rgba(0,0,0, .5), inset 0 0 0 2px rgba(0,0,0, .2);
+	
+	
+}
+
+.success a{
+	font-weight: bold;
+	color:white;
+	
+	&:hover{
+		color:aliceblue
+	}
+	
+}
 
 .field  textarea{
 

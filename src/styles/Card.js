@@ -149,7 +149,7 @@ const Repo = styled.div`
     border      : solid 1px #eee;
     border-right: none;
     border-top  : none;
-    padding     : 5px;
+    padding     : 10px;
     width       : 50%;
     min-height  : 40px;
     

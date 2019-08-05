@@ -14,6 +14,11 @@ const repository = (state = INITIAL_STATE, action) => {
             return {
                 error:action.data
             };
+        case "CREATED_REPO":
+            return {
+                ...state,
+                reposCreated:action.data
+            };
         
         default:
             return state;

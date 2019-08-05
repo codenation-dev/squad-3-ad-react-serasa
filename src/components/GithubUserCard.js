@@ -114,7 +114,7 @@ class GithubUserCard extends Component {
                         </CardContentTitle>
                         <Repos>                            
                             {                                
-                                repos ? <AllRepos filter={this.state.select ? this.state.select : null} repos={repos} /> : null
+                                <AllRepos filter={this.state.select ? this.state.select : null} repos={repos} /> 
                             }
                             
                         </Repos>
@@ -143,11 +143,10 @@ class GithubUserCard extends Component {
 class AllRepos extends Component {
     
     
-    
     render() {
         
         let  { repos, filter } = this.props
-        console.log(repos)
+        
         if (filter) {
             
             repos = repos.filter(repo => repo.language === filter)
@@ -165,8 +164,8 @@ class AllRepos extends Component {
                         :
                         <RepoData >&nbsp;</RepoData>
                     }
-                    { repo.description  ? <RepoData  >                               { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
-                    { repo.language     ? <RepoData  className="language"> <Circle />                    { repo.language   } </RepoData >            :<RepoData >&nbsp;</RepoData>}
+                    { repo.description  ? <RepoData  > { repo.description} </RepoData >  :<RepoData >&nbsp;</RepoData>}
+                    { repo.language     ? <RepoData  className="language"> <Circle /> { repo.language   } </RepoData > :<RepoData >&nbsp;</RepoData>}
                                         
                 </Repo>
                 

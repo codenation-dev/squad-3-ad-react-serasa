@@ -4,6 +4,12 @@ export function getAuth(auth){
         data: auth
     }
 }
+export function createRepo(repo){
+    return {
+        type: "CREATED_REPO",
+        data: repo
+    }
+}
 
 export function getUser(users){
     return {
