@@ -13,7 +13,6 @@ const Home = () => (
 )
 
 const SHome = styled.div`
-
     flex-direction: column;
     display: flex;
 `
