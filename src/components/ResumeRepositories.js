@@ -1,34 +1,30 @@
 import React from 'react'
 
+import ListResumeRepos from './ListResumeRepos'
+
 const ResumeRepositories  = ({repos}) => {
-      
-        const getTotalRepositoryYear = repos.map(item => {      
-            return item.created_at.slice(0,4)
-        }).reduce((obj, item) => {
-            if ( !obj[item] ) {
-                obj[item]=1;
-             }else{
-                 obj[item]++
-             }
-            return obj
-        },{})
 
-        const result = (yearsRepository) => {          
-            return Object.keys(yearsRepository).map(key => (
-            <div key={key}>  
-                <strong>{key}</strong>
-                <p>{yearsRepository[key] <= 1 ?  `${yearsRepository[key]} Repositório criado` : `${yearsRepository[key]} Repositórios criados.`}</p>
-            </div>
-        )).reverse()
-    }
-        return (
-            <div >
-               {result(getTotalRepositoryYear)}
-            </div>
-        )
+    const total = repos.length
 
- 
+    let repositoryByYear = repos.reduce((item, year) => {    
+        let yearSelect =  year.created_at.slice(0,4)
+         if ( !item[yearSelect] ) {
+            item[yearSelect]=1;
+          }else{
+            item[yearSelect]++
+          }
+         return item
+     }, {})
+     
+     const listResumeYear = Object.keys(repositoryByYear).map(year => (
+         <ListResumeRepos key={year} year={year} value={repositoryByYear[year]} total={total}/>
+     )).reverse()
+
+    return (
+        <div >
+            {listResumeYear}
+        </div>
+    )
 }
-
 
 export default ResumeRepositories;
