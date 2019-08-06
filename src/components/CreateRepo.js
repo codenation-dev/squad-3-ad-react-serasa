@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Inputs, Input, Field, Label, Button, Form} from '../styles/Input';
 import {connect} from 'react-redux'
 import userThunks from '../thunks/userThunks'
+import * as userActions from '../actions/user'
 import Error                from '../components/Error'
-import  * as repositoriesAction from '../actions/repository';
-import { bindActionCreators } from 'redux';
+
 class CreateRepo extends Component {
     constructor(props) {
         super(props);
@@ -177,7 +177,7 @@ class Success extends Component {
 
 const mapDispatchToProps = {
     createRepo: userThunks.createRepo,
-    clearError: repositoriesAction.clearError
+    clearError: userActions.clearError
 }
 
 const mapStateToProps = ({user : {reposCreated, error }}) => ({
