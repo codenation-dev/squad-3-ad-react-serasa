@@ -30,7 +30,6 @@ const Logo = styled.div``
 
 
 const Nav = styled.nav`
-    
     display:flex;
     align-self: flex-end;
     flex: 1;
@@ -39,12 +38,10 @@ const Nav = styled.nav`
     
 `
 const SLink = styled.div`
-    
     padding:20px 15px;
-    /*background: rgba(0,0,0, .15);*/
     text-decoration:none;
-    
-    & > a{
+
+   & > a{
         padding: 20px 0;
         color: white;
         font-weight:bold

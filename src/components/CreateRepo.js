@@ -54,10 +54,6 @@ class CreateRepo extends Component {
             description, 
             isPrivate
         });
-        
-        
-        
-        
     }
     
     render() {
@@ -68,10 +64,6 @@ class CreateRepo extends Component {
         if (reposCreated || error) {
             loading = false
         }
-        
-        
-        
-        
         return (
             <div>
                 { error ? <Error 
@@ -155,10 +147,7 @@ class CreateRepo extends Component {
                     </Field>
                     
                 </Form>
-                
                 {reposCreated ? <Success data={reposCreated} />: null }
-                
-                
             </div>
         )
     }
@@ -179,27 +168,20 @@ class Success extends Component {
                 </div>
             </div>
             <div>
-                
                 Ver repositorio <a href={html_url}>{name}</a>
-                
             </div>
         </div>
         )
     }
 }
 
-
-
+const mapDispatchToProps = {
+    createRepo: userThunks.createRepo
+}
 
 const mapStateToProps = ({user : {reposCreated, error }}) => ({
     reposCreated
 ,   error
-})
-
-
-const mapDispatchToProps = dispatch => ({
-    createRepo: config => dispatch(userThunks.createRepo(config)),
-    clearError: bindActionCreators(repositoriesAction.clearError, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRepo);

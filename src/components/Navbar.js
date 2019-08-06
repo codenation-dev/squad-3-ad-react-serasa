@@ -28,12 +28,9 @@ class Navbar extends React.Component {
     }
     
     render(){
-        
         return (
             <div>
-                
                 <h2>Digite seu nome e gere um card</h2>
-                
                 <div  className="field">
                     <input 
                         value           = {this.state.value}
@@ -57,9 +54,9 @@ class Navbar extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    getUser: username => dispatch(userThunks.getUser(username)),  
-    getRepos: username => dispatch(userThunks.getRepos(username)),  
-});
+const mapDispatchToProps = {
+    getUser: userThunks.getUser,  
+    getRepos: userThunks.getRepos,  
+};
 
 export default connect(null, mapDispatchToProps)(Navbar)

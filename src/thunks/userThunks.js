@@ -1,5 +1,6 @@
 import api from '../services/api'
 import * as userActions from '../actions/user';
+import {APP_NAME} from '../utils/constants'
 
 const userThunks = {
     getUser: username => dispatch => {
@@ -28,7 +29,7 @@ const userThunks = {
 
         api.get(`/authorizations`, headers())
             .then(async ({data}) => { 
-                const auth = data.filter(item => item.app.name === "Squad3 Git")[0];
+                const auth = data.find(item => item.app.name === APP_NAME);
                 
                 if(auth){
                     await api.delete(`/authorizations/${auth.id}`, headers())
@@ -36,7 +37,7 @@ const userThunks = {
                 
                 const createdauth = await api.post('/authorizations',{
                     scopes: ["repo"],
-                    note: "Squad3 Git"
+                    note: APP_NAME
                 }, headers());
                 
                 const repo = await api.post("/user/repos",{
