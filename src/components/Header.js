@@ -1,11 +1,15 @@
-import React from 'react';
+import React    from 'react';
 import { Link } from 'react-router-dom';
-import styled               from 'styled-components'
+import styled   from 'styled-components'
+import logo     from './../assets/images/squad3-logo.png'
 
 
 const Header = props => (
     <header>
         <div className="wrap-header">
+            <Logo>
+                <img alt="logo" height="83px" width="60px" src={logo} />
+            </Logo>
             <Nav position="left">
                 <SLink>
                     <Link to="/">Home</Link>
@@ -22,11 +26,15 @@ const Header = props => (
     </header>
 )
 
+const Logo = styled.div``
+
 
 const Nav = styled.nav`
     
     display:flex;
     align-self: flex-end;
+    flex: 1;
+    justify-content: flex-end;
     
     
 `

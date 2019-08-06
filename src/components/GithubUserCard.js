@@ -45,7 +45,7 @@ class GithubUserCard extends Component {
         this.handleChange = this.handleChange.bind(this); 
     }
     
-    componentDidMount(oldProps){
+    componentDidMount(){
         
         this.setState({
             loading: true 

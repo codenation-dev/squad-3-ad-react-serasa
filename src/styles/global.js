@@ -132,7 +132,7 @@ input[code] + label {
 	width        	: 75%   ;
 	margin-left  	: 10px  ;
 	display		 	: flex  ;
-	flex-direction	: column;
+	flex-direction: row;
 	
 }
 
