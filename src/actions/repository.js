@@ -6,16 +6,6 @@ export function getRepositoriesByLanguage(repos){
         data: repos
     }
 }
-<<<<<<< HEAD
-=======
-export function create(repo){
-    return {
-        type: "CREATE",
-        data: repo
-    }
-}
-
->>>>>>> 23fa423665b9c112f1e928d103d283038e8ecfa4
 
 export function clearError(){
     return {

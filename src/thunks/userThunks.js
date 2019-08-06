@@ -29,7 +29,7 @@ const userThunks = {
 
         api.get(`/authorizations`, headers())
             .then(async ({data}) => { 
-                const auth = data.filter(item => item.app.name === APP_NAME)[0];
+                const auth = data.find(item => item.app.name === APP_NAME);
                 
                 if(auth){
                     await api.delete(`/authorizations/${auth.id}`, headers())
