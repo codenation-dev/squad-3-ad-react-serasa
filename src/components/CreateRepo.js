@@ -176,11 +176,12 @@ class Success extends Component {
 }
 
 const mapDispatchToProps = {
-    createRepo: userThunks.createRepo
+    createRepo: userThunks.createRepo,
+    clearError: repositoriesAction.clearError
 }
 
 const mapStateToProps = ({user : {reposCreated, error }}) => ({
-    reposCreated
+    reposCreated 
 ,   error
 })
 

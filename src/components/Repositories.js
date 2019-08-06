@@ -9,6 +9,7 @@ import {
 import {connect} from 'react-redux'
 import repositoryThunks from '../thunks/repositoryThunks'
 
+
 class Repositories extends Component {
 
     constructor(props) {
@@ -89,12 +90,15 @@ class Repositories extends Component {
     }
 }
 
-const mapStateToProps = ({repository}) => ({
-    repos: repository.repos
+const mapStateToProps = ({repository, error}) => ({
+    repos: repository.repos,
+    error
 })
 
 const mapDispatchToProps = dispatch => ({
     getRepositoriesByLanguage: (repo, language) => dispatch(repositoryThunks.getReposByLanguage(repo, language))
+    
 })
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(Repositories);
