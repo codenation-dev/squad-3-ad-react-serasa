@@ -5,3 +5,4 @@ export const ERROR        = "ERROR";
 export const CLEAR_ERROR  = "CLEAR_ERROR";
 
 export const GET_REPOSITORIES_LANGUAGE  = "GET_REPOSITORIES_LANGUAGE";
+export const CREATED_REPO  = "CREATED_REPO";
