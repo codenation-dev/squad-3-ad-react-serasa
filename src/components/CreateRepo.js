@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-
 import {Inputs, Input, Field, Label, Button, Form} from '../styles/Input';
 import {connect} from 'react-redux'
 import userThunks from '../thunks/userThunks'
@@ -69,7 +67,6 @@ class CreateRepo extends Component {
         
         if (reposCreated || error) {
             loading = false
-            
         }
         
         
@@ -154,7 +151,7 @@ class CreateRepo extends Component {
                         
                         
                     <Field className="field no-flex">
-                            <Button disabled={loading? true: false} className="button" type="submit">{loading?"loading...": "Criar"}</Button>
+                        <Button disabled={loading? true: false} className="button" type="submit">{loading?"carregando ...": "Criar"}</Button>
                     </Field>
                     
                 </Form>
@@ -173,7 +170,7 @@ class Success extends Component {
     render() {
         
         const { name, html_url } = this.props.data.data
-        console.log(this.props)
+        
         return (
             <div className="success">
             <div className="wrap_success">
@@ -183,7 +180,7 @@ class Success extends Component {
             </div>
             <div>
                 
-                <a href={html_url}> Clique aqui para Ver repositorio {name}</a>
+                Ver repositorio <a href={html_url}>{name}</a>
                 
             </div>
         </div>

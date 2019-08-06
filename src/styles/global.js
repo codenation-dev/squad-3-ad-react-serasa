@@ -234,8 +234,8 @@ input[code] + label {
 	padding: 16px;
     margin: 5px;
     background-color: darkgrey;
-    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
-    color: white;
+	background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    color: #39464a;
     
     font-size: 15px;
     border-radius: 3px;
@@ -246,7 +246,7 @@ input[code] + label {
 
 .success a{
 	font-weight: bold;
-	color:white;
+	color:#39464a;;
 	
 	&:hover{
 		color:aliceblue

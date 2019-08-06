@@ -49,7 +49,7 @@ class Navbar extends React.Component {
                 </div>
                 <div className="field">
                     <button className="button" onClick={this.handleClick}>
-                        Generate Card
+                        Visualize
                     </button>
                 </div>
             </div>

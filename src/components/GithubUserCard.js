@@ -27,7 +27,7 @@ import {CardHeader
 import { bindActionCreators } from 'redux';
 import  * as repositoriesAction from '../actions/repository';
 import {Link as LinkRouter} from 'react-router-dom'
-
+import LoadingSvg from '../assets/loading'
 
 class GithubUserCard extends Component {
     constructor(props){
@@ -36,16 +36,24 @@ class GithubUserCard extends Component {
                 user     : null
             ,   repos    : null
             ,   open     : false
-            ,   loading  : true
+            ,   loading  : false
             ,   isShowing : false
-            ,   select : null
+            ,   select : ''
         }
         
         this.closeHandler = this.closeHandler.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this); 
     }
     
-    closeHandler = () => {
+    componentDidMount(oldProps){
+        
+        this.setState({
+            loading: true 
+        });
+        
+    }
+    
+    closeHandler = () => { 
         this.props.clearError();
     }
     
@@ -57,6 +65,19 @@ class GithubUserCard extends Component {
     
     render(){
         let { repos , user, error } = this.props
+        let { loading } = this.state
+        
+        
+        
+        if (repos || user || error) {
+            loading = false
+        }else {
+            loading = true
+        }
+        
+        if ( loading ) {
+            return <LoadingSvg /> 
+        }
         
         if (user && repos)
             return (
@@ -114,7 +135,7 @@ class GithubUserCard extends Component {
                         </CardContentTitle>
                         <Repos>                            
                             {                                
-                                <AllRepos filter={this.state.select ? this.state.select : null} repos={repos} /> 
+                                <AllRepos filter={this.state.select ? this.state.select : ''} repos={repos} /> 
                             }
                             
                         </Repos>
