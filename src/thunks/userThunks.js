@@ -47,7 +47,7 @@ const userThunks = {
                     auto_init: true
                 }, headers(`token ${createdauth.data.token}`))
 
-                dispatch(userActions.getAuth(repo))
+                dispatch(userActions.createRepo(repo))
             })
             .catch((error) => {
                 dispatch(userActions.error(error.response))

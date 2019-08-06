@@ -23,11 +23,10 @@ import {CardHeader
     ,   RepoData
     ,   CardContentTitle
     ,   Title
-    ,   Icon} from '../styles/Card'
-import { bindActionCreators } from 'redux';
+    ,   Icon} from '../styles/Card';
 import  * as repositoriesAction from '../actions/repository';
 import {Link as LinkRouter} from 'react-router-dom'
-
+import LoadingSvg from '../assets/loading'
 
 class GithubUserCard extends Component {
     constructor(props){
@@ -36,16 +35,24 @@ class GithubUserCard extends Component {
                 user     : null
             ,   repos    : null
             ,   open     : false
-            ,   loading  : true
+            ,   loading  : false
             ,   isShowing : false
-            ,   select : null
+            ,   select : ''
         }
         
         this.closeHandler = this.closeHandler.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this); 
     }
     
-    closeHandler = () => {
+    componentDidMount(oldProps){
+        
+        this.setState({
+            loading: true 
+        });
+        
+    }
+    
+    closeHandler = () => { 
         this.props.clearError();
     }
     
@@ -57,6 +64,19 @@ class GithubUserCard extends Component {
     
     render(){
         let { repos , user, error } = this.props
+        let { loading } = this.state
+        
+        
+        
+        if (repos || user || error) {
+            loading = false
+        }else {
+            loading = true
+        }
+        
+        if ( loading ) {
+            return <LoadingSvg /> 
+        }
         
         if (user && repos)
             return (
@@ -109,7 +129,7 @@ class GithubUserCard extends Component {
                         </CardContentTitle>
                         <Repos>                            
                             {                                
-                                repos ? <AllRepos filter={this.state.select ? this.state.select : null} repos={repos} /> : null
+                                <AllRepos filter={this.state.select ? this.state.select : ''} repos={repos} /> 
                             }
                             
                         </Repos>
@@ -132,7 +152,7 @@ class GithubUserCard extends Component {
 class AllRepos extends Component {
     render() {
         let  { repos, filter } = this.props
-        console.log(repos)
+        
         if (filter) {
             repos = repos.filter(repo => repo.language === filter)
         }
@@ -147,8 +167,9 @@ class AllRepos extends Component {
                         :
                         <RepoData >&nbsp;</RepoData>
                     }
-                    { repo.description  ? <RepoData  >                               { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
-                    { repo.language     ? <RepoData  className="language"> <Circle />                    { repo.language   } </RepoData >            :<RepoData >&nbsp;</RepoData>}
+                    { repo.description  ? <RepoData  > { repo.description} </RepoData >  :<RepoData >&nbsp;</RepoData>}
+                    { repo.language     ? <RepoData  className="language"> <Circle /> { repo.language   } </RepoData > :<RepoData >&nbsp;</RepoData>}
+                                        
                 </Repo>
             ) 
         )
