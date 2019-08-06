@@ -1,41 +1,43 @@
+import {
+        GET_USER    
+    ,   GET_REPOS   
+    ,   GET_AUTH    
+    ,   ERROR       
+    ,   CLEAR_ERROR 
+} from '../utils/actionTypes'
+
 const INITIAL_STATE = {
-        repos   : null
+        repos   : []
     ,   user    : null
     ,   auth    : null
-    ,   error   : null
+    ,   error   : false
 }
 
 const user = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case "GET_USER":
-            //delete state.error
+        case GET_USER:
             return {
                 ...state,
                 error:false,
                 user: {...action.data}
             };
-        case "GET_REPOS":
-            
-            //delete state.error
+        case GET_REPOS:
             return {
                 ...state,
                 error:false,
                 repos: [...action.data]
             };
-        case "GET_AUTH":
-            console.log("ITEMS AUTH", action.data)
-            console.log("STATE", state)
-            
+        case GET_AUTH :
             return {
                 ...state,
                 error:false,
                 auth: {...action.data}
             };
-        case "ERROR":
+        case ERROR:
             return {
                 error: {...action.data}
             };
-        case "CLEAR_ERROR":
+        case CLEAR_ERROR:
             return {
                 error:action.data
             };

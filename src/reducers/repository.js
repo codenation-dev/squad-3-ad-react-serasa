@@ -1,16 +1,17 @@
+import {GET_REPOSITORIES_LANGUAGE, CLEAR_ERROR} from '../utils/actionTypes'
+
 const INITIAL_STATE = {
-    repos   : null
+    repos   : []
 }
 
 const repository = (state = INITIAL_STATE, action) => {
-    console.log("ACTION", action)
     switch (action.type) {
-        case "GET_REPOSITORIES_LANGUAGE":
+        case GET_REPOSITORIES_LANGUAGE:
             return {
                 ...state,
                 repos: [...action.data]
             };
-        case "CLEAR_ERROR":
+        case CLEAR_ERROR:
             return {
                 error:action.data
             };

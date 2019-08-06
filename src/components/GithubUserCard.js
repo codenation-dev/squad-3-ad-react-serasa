@@ -60,9 +60,7 @@ class GithubUserCard extends Component {
         
         if (user && repos)
             return (
-                
                 <Card>
-                    
                     <CardHeader>
                         <Photo>
                             <Link target="_blank" href={user.html_url}><img height="50px" src={user.avatar_url} alt=""/></Link>
@@ -98,12 +96,9 @@ class GithubUserCard extends Component {
                             </UserStats>
                         </UserData>
                         <UserData>
-                            
                             <ReposByYear data={repos} />
-                            
                         </UserData>
                         <CardContentTitle>
-                            
                             <Title >Repositórios</Title>
                             <Select name="select" value={this.state.select} onChange={this.handleChange}>
                                 <option value="">All</option>
@@ -119,44 +114,31 @@ class GithubUserCard extends Component {
                             
                         </Repos>
                     </CardContent>
-                    
-                    
                 </Card>
             )
-            else {
+            else {  
+                let code = error ? error.status : false
+                return <Error 
                     
-                    let code = error ? error.status : false
-                    return <Error 
-                        
-                        close={this.closeHandler} 
-                        code={code} 
-                        type="HttpErrors" 
-                    />
-                
+                    close={this.closeHandler} 
+                    code={code} 
+                    type="HttpErrors" 
+                />
             }
-                
-            
     }
 }
 
 
 class AllRepos extends Component {
-    
-    
-    
     render() {
-        
         let  { repos, filter } = this.props
         console.log(repos)
         if (filter) {
-            
             repos = repos.filter(repo => repo.language === filter)
-            
         }
         
         return (
             repos.map( (repo, key) => 
-                                    
                 <Repo key={key}>
                     { repo.name         ? 
                         <RepoData>
@@ -167,9 +149,7 @@ class AllRepos extends Component {
                     }
                     { repo.description  ? <RepoData  >                               { repo.description} </RepoData >            :<RepoData >&nbsp;</RepoData>}
                     { repo.language     ? <RepoData  className="language"> <Circle />                    { repo.language   } </RepoData >            :<RepoData >&nbsp;</RepoData>}
-                                        
                 </Repo>
-                
             ) 
         )
     }
@@ -180,7 +160,6 @@ const Select = styled.select`
     border: solid 1px rgba(0, 0, 0, 0.78);
     font-size: 18px;
     padding: 5px;
-
 `
 
 const mapStateToProps = ({user : {user, repos, error }}) => ({
@@ -189,10 +168,9 @@ const mapStateToProps = ({user : {user, repos, error }}) => ({
     ,   error
 })
 
-const mapDispatchToProps = dispatch => ({
-    clearError: bindActionCreators(repositoriesAction.clearError, dispatch)
-})
-
+const mapDispatchToProps = {
+    clearError: repositoriesAction.clearError
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(GithubUserCard)
 

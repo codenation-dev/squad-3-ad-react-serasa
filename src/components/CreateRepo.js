@@ -133,8 +133,8 @@ class CreateRepo extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    createRepo: config => dispatch(userThunks.createRepo(config))
-})
+const mapDispatchToProps = {
+    createRepo: userThunks.createRepo
+}
 
 export default connect(null, mapDispatchToProps)(CreateRepo);

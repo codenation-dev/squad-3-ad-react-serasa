@@ -22,9 +22,7 @@ const createViewByYear = data => {
         itens.push(<Stats key={key}><b>{year}</b> <p>{reposPerYears[year]} repos</p> </Stats>);
         key++;
     }
-    /* itens.push(<Stats key={key}><b>2018</b> <p>1584 repos</p> </Stats>);
-    itens.push(<Stats key={key}><b>2018</b> <p>1584 repos</p> </Stats>);
-    itens.push(<Stats key={key}><b>2018</b> <p>1584 repos</p> </Stats>); */
+    
     return itens;
 }
 
