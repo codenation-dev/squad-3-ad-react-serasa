@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Card                 from './Card'
 import api                  from '../services/api'
+import ResumeRepositories   from './ResumeRepositories'
 
 export default class Home extends Component {
     
@@ -87,7 +88,7 @@ export default class Home extends Component {
                 { <div className="grid-cards">
                     {this.state.repos.map((item, key) => <Card data={item} key={key} />)}
                 </div> }
-                
+                <ResumeRepositories repos={this.state.repos} />
             </div>
         )
     }
