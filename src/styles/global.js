@@ -363,6 +363,7 @@ input[code] + label {
     left                : 0                     ;
     width               : 100%                  ;
     height              : 100%                  ;
+	z-index				:1						;
 }
 
 .wrap-error{
@@ -372,7 +373,7 @@ input[code] + label {
     box-shadow          :    4px 0px 20px -5px #2b2b2bcf                	, 
                             -5px 0px 20px -5px rgba(0, 0, 0, 0.25)     		, 
                             inset 0px 0px 0px 1px rgba(0,0,0,.2)       		;
-	z-index				:	1
+	z-index				:	2
 }
 .header-error{
     

@@ -43,7 +43,7 @@ Para testar basta dar fazer o download do projeto para sua maquina e executar os
 * **Augusto Penaquione Zanetti** - *Initial work* - [augustozanetti](https://github.com/augustozanetti)
 * **Jeferson Luiz da Costa** - *Initial work* - [jefersonbrzcosta](https://github.com/jefersonbrzcosta)
 * **Gabriel Giro Resende** - *Initial work* - [gagres](https://github.com/gagres)
-* **Thiago da Silva**   - *Initial work* - [thg021](https://github.com/thg021)
+* **Thiago da Silva**   - *Initial work* - [thg021](https://github.com/thg021) 
 
 
 ## License
