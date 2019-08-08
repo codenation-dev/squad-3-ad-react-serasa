@@ -106,10 +106,10 @@ class GithubUserCard extends Component {
                             
                             <OthersInfo>
                                 <Info><b>● User info</b> </Info>
-                                {user.location    ? <Info>Location  : {user.location}                               </Info>: null}
-                                {user.email       ? <Info>Email     : {user.email}                                  </Info>: null}
-                                {user.company     ? <Info>Company   : {user.company}                                </Info>: null}
-                                {user.created_at  ? <Info>Created   : {new Date(user.created_at).toLocaleString()}  </Info>: null}
+                                {user.location    ? <Info>Local     : {user.location}                               </Info>: null}
+                                {user.email       ? <Info>E-mail    : {user.email}                                  </Info>: null}
+                                {user.company     ? <Info>Empresa   : {user.company}                                </Info>: null}
+                                {user.created_at  ? <Info>Criado em : {new Date(user.created_at).toLocaleString()}  </Info>: null}
                             </OthersInfo>
                             <UserStats>
                                 <Stats><b>{user.public_repos}</b><p>Repos</p></Stats>
