@@ -10,7 +10,7 @@ Projeto para atender o desafio final da codenation em parceria com Serasa
 * [Styed-components](https://www.styled-components.com/) - Styed-components
 
 
-#### Prerequisites
+#### Como usar
 
 Para testar basta dar fazer o download do projeto para sua maquina e executar os comandos:
 ```
