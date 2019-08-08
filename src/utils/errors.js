@@ -68,7 +68,6 @@ const HttpErrors = {
     "510": {"description":"Not Extended"},
     "511": {"description":"Network Authentication Required"},
     "599": {"description":"Network Connect Timeout Error"}
-
 }
 
 

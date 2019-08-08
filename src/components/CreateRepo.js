@@ -3,7 +3,7 @@ import {Inputs, Input, Field, Label, Button, Form} from '../styles/Input';
 import {connect} from 'react-redux'
 import userThunks from '../thunks/userThunks'
 import * as userActions from '../actions/user'
-import Error                from '../components/Error'
+import Error                from './Error'
 
 class CreateRepo extends Component {
     constructor(props) {
