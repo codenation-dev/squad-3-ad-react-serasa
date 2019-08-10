@@ -66,18 +66,9 @@ class GithubUserCard extends Component {
         let { repos , user, error } = this.props
         let { loading } = this.state
         
-<<<<<<< HEAD
         
         loading = repos || user || error ? false : loading
 
-=======
-        if (repos || user || error) {
-            loading = false
-        }else {
-            loading = true
-        }
-        
->>>>>>> 16d911dcacac8e079fc1d310dc5bbc1a6b166207
         if ( loading ) {
             return <LoadingSvg /> 
         }
