@@ -13,7 +13,7 @@ const userThunks = {
         )
     },
     getRepos: username => dispatch => {
-      return api.get(`/users/${username}/repos`)
+        return api.get(`/users/${username}/repos`)
             .then((repos) => {
                 dispatch(userActions.getRepos(repos.data))
             }).catch((error) => {
@@ -27,7 +27,7 @@ const userThunks = {
                 Authorization 
             }});
 
-        api.get(`/authorizations`, headers())
+        return api.get(`/authorizations`, headers())
             .then(async ({data}) => { 
                 const auth = data.find(item => item.app.name === APP_NAME);
                 

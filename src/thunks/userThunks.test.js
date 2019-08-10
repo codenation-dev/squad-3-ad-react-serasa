@@ -23,8 +23,49 @@ describe('User Thunks', () => {
         ];
 
         const store = mockStore({});
-
         return store.dispatch(actions.getUser(username)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        })
+    })
+
+    it('should dispatch GET_REPOS when fetch repos of github', () => {
+        const username = 'gagres';
+        apiMock.onGet(`/users/${username}/repos`).reply(200, {
+            username
+        })
+
+        const expectedActions = [
+            { type: actionTypes.GET_REPOS, data: { username } }
+        ]
+
+        const store = mockStore({});
+        return store.dispatch(actions.getRepos(username)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        })
+    })
+
+    it('should dispatch CREATE_REPO when create a new repo on github', () => {
+        const newRepoInfo = {
+            username: 'gagres',
+            password: '12345',
+            name: 'new-repo',
+            description: 'none',
+            isPrivate: false
+        }
+        const { username, password } = newRepoInfo;
+
+        apiMock.onGet('/authorizations', {}, {
+            Authorization: `Basic ${btoa(`${username}:${password}`)}`
+        }).reply(200, {
+            
+        })
+
+        const expectedActions = [
+            { type: actionTypes.CREATED_REPO, data: { name: newRepoInfo.name } }
+        ]
+
+        const store = mockStore({});
+        return store.dispatch(actions.getRepos(username)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         })
     })
