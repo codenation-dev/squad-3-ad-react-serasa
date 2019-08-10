@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Error                from '../components/Error'
+import Error                from './Error'
 import styled               from 'styled-components'
 import { connect } from 'react-redux'
 import ReposByYear from './ReposByYear';
@@ -66,8 +66,6 @@ class GithubUserCard extends Component {
         let { repos , user, error } = this.props
         let { loading } = this.state
         
-        
-        
         if (repos || user || error) {
             loading = false
         }else {
@@ -83,7 +81,9 @@ class GithubUserCard extends Component {
                 <Card>
                     <CardHeader>
                         <Photo>
-                            <Link target="_blank" href={user.html_url}><img height="50px" src={user.avatar_url} alt=""/></Link>
+                            <Link target="_blank" href={user.html_url}>
+                                <img height="50px" src={user.avatar_url} alt=""/>
+                            </Link>
                         </Photo>
                         <UserInfo>
                             <Name>
@@ -100,10 +100,8 @@ class GithubUserCard extends Component {
                             }> + </LinkRouter>
                         </Icon>
                     </CardHeader>
-                    <CardContent>
-                        
+                    <CardContent> 
                         <UserData>
-                            
                             <OthersInfo>
                                 <Info><b>● User info</b> </Info>
                                 {user.location    ? <Info>Local     : {user.location}                               </Info>: null}
@@ -125,7 +123,7 @@ class GithubUserCard extends Component {
                             <Select name="select" value={this.state.select} onChange={this.handleChange}>
                                 <option value="">All</option>
                                 {
-                                    [...new Set(repos.map(repo =>  repo.language ).filter(repo => repo != null))].map((language, key) =>  <option key={key} value={language}>{language}</option>)
+                                    [...new Set(repos.map(repo => repo.language).filter(repo => repo != null))].map((language, key) => <option key={key} value={language}>{language}</option>)
                                 }
                             </Select>
                         </CardContentTitle>

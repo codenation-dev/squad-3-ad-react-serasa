@@ -4,7 +4,7 @@ import {APP_NAME} from '../utils/constants'
 
 const userThunks = {
     getUser: username => dispatch => {
-        api.get(`/users/${username}`)
+        return api.get(`/users/${username}`)
            .then((user) => {
                 dispatch(userActions.getUser(user.data))
            }).catch((error) => {
@@ -13,7 +13,7 @@ const userThunks = {
         )
     },
     getRepos: username => dispatch => {
-        api.get(`/users/${username}/repos`)
+      return api.get(`/users/${username}/repos`)
             .then((repos) => {
                 dispatch(userActions.getRepos(repos.data))
             }).catch((error) => {
