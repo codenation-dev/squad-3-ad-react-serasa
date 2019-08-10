@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Contents from './components/Contents';
 import Footer from './components/Footer';
 
-function Home() {
+function Main() {
   return (
     <div className="app">
       <GlobalStyle />  
@@ -15,4 +15,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Main;

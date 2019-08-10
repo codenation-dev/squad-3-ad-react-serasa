@@ -10,8 +10,8 @@ class Contents extends Component {
             <div className="content">
                 <div className="wrap-content">
                     <Route path="/" exact component={Home}/>
-                    <Route path="/repos" component={Repositories}/>
                     <Route path="/user/repos" component={CreateRepo}/>
+                    <Route path="/repos" component={Repositories}/>
                 </div>
             </div>
         )

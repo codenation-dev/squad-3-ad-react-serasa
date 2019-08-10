@@ -67,13 +67,8 @@ class GithubUserCard extends Component {
         let { loading } = this.state
         
         
-        
-        if (repos || user || error) {
-            loading = false
-        }else {
-            loading = true
-        }
-        
+        loading = repos || user || error ? false : loading
+
         if ( loading ) {
             return <LoadingSvg /> 
         }

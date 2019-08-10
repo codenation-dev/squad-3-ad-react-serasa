@@ -5,11 +5,11 @@ import {APP_NAME} from '../utils/constants'
 const userThunks = {
     getUser: username => dispatch => {
         api.get(`/users/${username}`)
-           .then((user) => {
+            .then((user) => {
                 dispatch(userActions.getUser(user.data))
-           }).catch((error) => {
+            }).catch((error) => {
                 dispatch(userActions.error(error.response))
-           }
+            }
         )
     },
     getRepos: username => dispatch => {
