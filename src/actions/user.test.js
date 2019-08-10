@@ -3,7 +3,7 @@ import {
     GET_REPOS,   
     ERROR,  
     CLEAR_ERROR,
-    CREATE_REPO
+    CREATED_REPO
 } from '../utils/actionTypes'
 
 import {
@@ -27,7 +27,7 @@ describe('User Acton', () => {
     it('should create an action to create a repo', () => {
         const repo = { name: 'novo repo' };
         const expectedAction = {
-            type: CREATE_REPO,
+            type: CREATED_REPO,
             data: repo
         }
         expect(createRepo(repo)).toEqual(expectedAction);

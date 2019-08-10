@@ -3,7 +3,7 @@ import {
 ,   GET_REPOS   
 ,   ERROR       
 ,   CLEAR_ERROR
-,   CREATE_REPO 
+,   CREATED_REPO 
 } from '../utils/actionTypes'
 
 export function getAuth(auth){
@@ -14,7 +14,7 @@ export function getAuth(auth){
 }
 export function createRepo(repo){
     return {
-        type: CREATE_REPO,
+        type: CREATED_REPO,
         data: repo
     }
 }

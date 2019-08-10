@@ -3,7 +3,8 @@ import {
     ,   GET_REPOS   
     ,   GET_AUTH    
     ,   ERROR       
-    ,   CLEAR_ERROR 
+    ,   CLEAR_ERROR
+    ,   CREATED_REPO
 } from '../utils/actionTypes'
 
 const INITIAL_STATE = {
@@ -41,7 +42,7 @@ const user = (state = INITIAL_STATE, action) => {
             return {
                 error:action.data
             };
-        case "CREATED_REPO":
+        case CREATED_REPO:
             return {
                 ...state,
                 reposCreated:action.data
