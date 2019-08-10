@@ -13,7 +13,7 @@ const userThunks = {
         )
     },
     getRepos: username => dispatch => {
-        api.get(`/users/${username}/repos`)
+        return api.get(`/users/${username}/repos`)
             .then((repos) => {
                 dispatch(userActions.getRepos(repos.data))
             }).catch((error) => {

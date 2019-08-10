@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import userThunks from '../thunks/userThunks'
 
-
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +28,10 @@ class Navbar extends React.Component {
     
     render(){
         return (
-            <div>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                this.handleClick();
+            }}>
                 <h2>Digite seu nome e gere um card</h2>
                 <div  className="field">
                     <input 
@@ -49,7 +51,7 @@ class Navbar extends React.Component {
                         Visualize
                     </button>
                 </div>
-            </div>
+            </form>
         )
     }
 }

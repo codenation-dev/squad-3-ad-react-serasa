@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import error from '../utils/errors'
+import error from '../../utils/errors'
 
-export default class Error extends Component {
-    
-    
+class Error extends Component {
     render(){
         const {type, code, close } = this.props
-        
         if (type && code )  {
-            
             return(
                 <div>
                     <div className="box-error" >
@@ -28,11 +24,9 @@ export default class Error extends Component {
                 </div>
             )
         } else {
-            return null
-            
+            return null;
         }
-        
     }
-    
-    
 }
+
+export default Error;
